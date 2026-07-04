@@ -2339,6 +2339,10 @@ button {
   margin-bottom: 1.5rem;
 }
 
+.social-login-buttons {
+  margin-bottom: 1rem;
+}
+
 .btn-social {
   flex: 1;
   display: flex;
@@ -2358,6 +2362,45 @@ button {
 .btn-social:hover {
   background: var(--background);
   border-color: var(--primary);
+}
+
+.btn-social-google {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn-social-google:hover {
+  background: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-social-google:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+.loading-spinner-small {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #4285F4;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
 .social-icon {

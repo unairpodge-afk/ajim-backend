@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../api';
+import { auth } from '../supabase';
 
 function Home() {
+  const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetchArticles();
+    checkUser();
   }, []);
+
+  const checkUser = async () => {
+    const { data } = await auth.getSession();
+    setUser(data?.session?.user || null);
+  };
 
   const fetchArticles = async () => {
     try {
@@ -17,6 +27,14 @@ function Home() {
       console.error('Error fetching articles:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSubmitClick = () => {
+    if (user) {
+      navigate('/submit');
+    } else {
+      navigate('/login');
     }
   };
 
@@ -30,14 +48,18 @@ function Home() {
             Open Access, Peer-Reviewed Journal for Islamic Medical and Health Research
           </p>
           <div className="hero-buttons">
-            <button className="btn btn-primary">Submit Article</button>
-            <button className="btn btn-secondary">Browse Articles</button>
+            <button className="btn btn-primary" onClick={handleSubmitClick}>
+              Submit Article
+            </button>
+            <Link to="/articles" className="btn btn-secondary">
+              Browse Articles
+            </Link>
           </div>
         </div>
         <div className="hero-decoration">
-          <div className="hero-badge">Open Access</div>
-          <div className="hero-badge">Peer Reviewed</div>
-          <div className="hero-badge">Halal Certified</div>
+          <span className="hero-badge">Open Access</span>
+          <span className="hero-badge">Peer Reviewed</span>
+          <span className="hero-badge">Halal Certified</span>
         </div>
       </section>
 
@@ -108,7 +130,9 @@ function Home() {
           )}
 
           <div className="section-footer">
-            <button className="btn btn-outline">View All Articles →</button>
+            <Link to="/articles" className="btn btn-outline">
+              View All Articles →
+            </Link>
           </div>
         </div>
       </section>
@@ -131,7 +155,9 @@ function Home() {
                 <li>✓ Quality Assured - Rigorous peer review</li>
                 <li>✓ Sharia Compliant - Islamic medical ethics</li>
               </ul>
-              <button className="btn btn-primary">Learn More</button>
+              <Link to="/about" className="btn btn-primary">
+                Learn More
+              </Link>
             </div>
             <div className="about-image">
               <div className="about-card">
@@ -156,7 +182,9 @@ function Home() {
         <div className="cta-container">
           <h2>Ready to Submit Your Research?</h2>
           <p>Join our community of researchers and contribute to advancing Islamic medical science.</p>
-          <button className="btn btn-primary btn-large">Submit Your Article</button>
+          <button className="btn btn-primary btn-large" onClick={handleSubmitClick}>
+            Submit Your Article
+          </button>
         </div>
       </section>
     </main>

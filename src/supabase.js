@@ -65,4 +65,15 @@ export const auth = {
     const { data, error } = await supabase.auth.updateUser(updates);
     return { data, error };
   },
+
+  // Sign in with Google
+  signInWithGoogle: async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`,
+      }
+    });
+    return { data, error };
+  },
 };
