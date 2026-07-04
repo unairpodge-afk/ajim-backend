@@ -68,7 +68,7 @@ function Articles() {
       <section className="page-header">
         <div className="page-header-content">
           <h1>Published Articles</h1>
-          <p>Browse and explore research articles from AJIM</p>
+          <p>Browse and explore research articles from VERITAS</p>
         </div>
       </section>
 

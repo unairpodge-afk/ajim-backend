@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 
 function About() {
   const editorialBoard = [
-    { name: 'Prof. Dr. John Smith', role: 'Editor-in-Chief', affiliation: 'Harvard Medical School' },
-    { name: 'Prof. Dr. Maria Garcia', role: 'Deputy Editor', affiliation: 'University of Barcelona' },
-    { name: 'Dr. Ahmad Rahman', role: 'Associate Editor', affiliation: 'Universitas Indonesia' },
-    { name: 'Dr. Yuki Tanaka', role: 'Associate Editor', affiliation: 'Tokyo University' },
-    { name: 'Prof. Dr. Lee Wei', role: 'Statistical Editor', affiliation: 'National University of Singapore' },
-    { name: 'Dr. Priya Sharma', role: 'Assistant Editor', affiliation: 'All India Institute of Medical Sciences' },
+    { name: 'Prof. Dr. Ahmad Abdullah', role: 'Editor-in-Chief', affiliation: 'Islamic University of Indonesia' },
+    { name: 'Prof. Dr. Muhammad Hassan', role: 'Deputy Editor', affiliation: 'Al-Azhar University' },
+    { name: 'Dr. Fatima Zahra', role: 'Associate Editor', affiliation: 'Universitas Islam Negeri' },
+    { name: 'Dr. Yusuf Ibrahim', role: 'Associate Editor', affiliation: 'King Saud University' },
+    { name: 'Prof. Dr. Omar Khalid', role: 'Islamic Ethics Editor', affiliation: 'University of Karachi' },
+    { name: 'Dr. Aisha Rahman', role: 'Assistant Editor', affiliation: 'International Islamic University Malaysia' },
   ];
 
   const indexing = [
@@ -23,7 +23,7 @@ function About() {
     {
       icon: '📋',
       title: 'Peer Review Process',
-      description: 'All submissions undergo rigorous double-blind peer review by experts in the field.',
+      description: 'All submissions undergo rigorous double-blind peer review by experts in Islamic medicine and biomedical sciences.',
     },
     {
       icon: '⚡',
@@ -40,6 +40,11 @@ function About() {
       title: 'Article Processing',
       description: 'Transparent APC structure with no hidden fees. Fee waivers available for authors from developing countries.',
     },
+    {
+      icon: '☪',
+      title: 'Islamic Ethics',
+      description: 'All research must adhere to Islamic ethical guidelines and principles.',
+    },
   ];
 
   return (
@@ -47,11 +52,11 @@ function About() {
       {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero-content">
-          <span className="journal-badge">Est. 2020</span>
-          <h1>Asian Journal of Medicine and Health</h1>
+          <span className="journal-badge">Est. 2024</span>
+          <h1>Journal of Islamic Medicine and Science</h1>
           <p className="about-subtitle">
             A peer-reviewed, open-access journal dedicated to advancing medical research
-            and healthcare practices across Asia and beyond.
+            and healthcare practices based on Islamic principles and modern medical science.
           </p>
         </div>
       </section>
@@ -63,15 +68,15 @@ function About() {
             <div className="mission-content">
               <h2>Our Mission</h2>
               <p>
-                AJIM aims to publish high-quality original research, reviews, and case reports
-                that contribute to the advancement of medical science and healthcare delivery.
-                We are committed to fostering collaboration among researchers, clinicians,
-                and healthcare professionals across the Asia-Pacific region and globally.
+                VERITAS aims to publish high-quality original research, reviews, and case reports
+                that contribute to the advancement of medical science while maintaining Islamic values
+                and ethical principles. We are committed to fostering collaboration among researchers,
+                clinicians, and healthcare professionals across the Muslim world and beyond.
               </p>
               <p>
                 Our journal provides a platform for sharing innovative findings, clinical
                 experiences, and evidence-based practices that address contemporary health
-                challenges and improve patient outcomes.
+                challenges from an Islamic perspective.
               </p>
             </div>
             <div className="mission-stats">
@@ -105,49 +110,49 @@ function About() {
         <div className="section-container">
           <h2 className="section-title">Scope of the Journal</h2>
           <p className="section-intro">
-            AJIM publishes original research and review articles in all areas of medicine and health sciences.
+            VERITAS publishes original research and review articles in all areas of Islamic medicine and health sciences.
           </p>
 
           <div className="scope-grid">
             <div className="scope-card">
               <span className="scope-icon">❤️</span>
-              <h3>Cardiology</h3>
-              <p>Cardiovascular medicine, interventional cardiology, heart failure, arrhythmias</p>
+              <h3>Islamic Medicine</h3>
+              <p>Prophetic medicine (Tibb Nabawi), herbal medicine in Islam, holistic healthcare</p>
             </div>
             <div className="scope-card">
               <span className="scope-icon">🧠</span>
-              <h3>Neurology</h3>
-              <p>Neuroscience, stroke, neurodegenerative diseases, clinical neurology</p>
+              <h3>Neuroscience</h3>
+              <p>Brain research, neurological disorders, cognitive health from Islamic perspective</p>
             </div>
             <div className="scope-card">
               <span className="scope-icon">🦠</span>
               <h3>Infectious Diseases</h3>
-              <p>Epidemiology, virology, antimicrobial resistance, public health</p>
+              <p>Epidemiology, virology, public health in Muslim communities</p>
             </div>
             <div className="scope-card">
               <span className="scope-icon">🩺</span>
               <h3>Internal Medicine</h3>
-              <p>Diabetes, endocrinology, gastroenterology, pulmonology</p>
+              <p>Diabetes, endocrinology, gastroenterology with Islamic ethical considerations</p>
             </div>
             <div className="scope-card">
               <span className="scope-icon">🔪</span>
-              <h3>Surgery</h3>
-              <p>General surgery, orthopedics, pediatric surgery, trauma care</p>
+              <h3>Islamic Bioethics</h3>
+              <p>Organ transplantation, end-of-life care, reproductive health ethics</p>
             </div>
             <div className="scope-card">
               <span className="scope-icon">👶</span>
-              <h3>Pediatrics</h3>
-              <p>Child health, neonatology, pediatric oncology, developmental medicine</p>
+              <h3>Family Health</h3>
+              <p>Pediatrics, maternal health, reproductive health in Islamic context</p>
             </div>
             <div className="scope-card">
               <span className="scope-icon">🩸</span>
-              <h3>Oncology</h3>
-              <p>Cancer research, chemotherapy, radiation oncology, palliative care</p>
+              <h3>Halal Pharma</h3>
+              <p>Halal pharmaceuticals, drug development, toxicology with Islamic guidelines</p>
             </div>
             <div className="scope-card">
               <span className="scope-icon">🏥</span>
               <h3>Public Health</h3>
-              <p>Epidemiology, health policy, environmental health, nutrition</p>
+              <p>Community health, health policy, environmental health in Islamic framework</p>
             </div>
           </div>
         </div>
@@ -158,7 +163,7 @@ function About() {
         <div className="section-container">
           <h2 className="section-title">Editorial Board</h2>
           <p className="section-intro">
-            Our editorial board comprises distinguished researchers and clinicians from leading institutions worldwide.
+            Our editorial board comprises distinguished researchers and clinicians from leading Islamic institutions worldwide.
           </p>
 
           <div className="board-grid">
@@ -188,7 +193,7 @@ function About() {
         <div className="section-container">
           <h2 className="section-title">Indexing & Abstracting</h2>
           <p className="section-intro">
-            AJIM is indexed in major international databases to ensure maximum visibility of published articles.
+            VERITAS is indexed in major international databases to ensure maximum visibility of published articles.
           </p>
 
           <div className="indexing-grid">
@@ -268,7 +273,7 @@ function About() {
             <Link to="/submit" className="btn btn-primary btn-large">
               Submit Your Article
             </Link>
-            <a href="mailto:editor@ajim-journal.com" className="btn btn-secondary btn-large">
+            <a href="mailto:editor@veritas-journal.com" className="btn btn-secondary btn-large">
               Contact Editor
             </a>
           </div>

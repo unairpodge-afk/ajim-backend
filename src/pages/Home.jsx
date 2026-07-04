@@ -25,9 +25,9 @@ function Home() {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <h1>Asian Journal of Medicine and Health</h1>
+          <h1>Journal of Islamic Medicine and Science</h1>
           <p className="hero-subtitle">
-            Open Access, Peer-Reviewed Journal for Medical and Health Research
+            Open Access, Peer-Reviewed Journal for Islamic Medical and Health Research
           </p>
           <div className="hero-buttons">
             <button className="btn btn-primary">Submit Article</button>
@@ -37,7 +37,7 @@ function Home() {
         <div className="hero-decoration">
           <div className="hero-badge">Open Access</div>
           <div className="hero-badge">Peer Reviewed</div>
-          <div className="hero-badge">Indexed</div>
+          <div className="hero-badge">Halal Certified</div>
         </div>
       </section>
 
@@ -118,17 +118,18 @@ function Home() {
         <div className="section-container">
           <div className="about-content">
             <div className="about-text">
-              <h2>About AJIM</h2>
+              <h2>About VERITAS</h2>
               <p>
-                Asian Journal of Medicine and Health (AJIM) is an open-access, peer-reviewed
+                VERITAS - Journal of Islamic Medicine and Science is an open-access, peer-reviewed
                 journal that publishes original research articles, reviews, and case reports
-                in the field of medicine and health sciences.
+                in the field of Islamic medicine and health sciences.
               </p>
               <ul className="about-features">
                 <li>✓ Open Access - Free access to all published articles</li>
                 <li>✓ Rapid Publication - Fast peer review process</li>
                 <li>✓ Global Reach - Indexed in major databases</li>
                 <li>✓ Quality Assured - Rigorous peer review</li>
+                <li>✓ Sharia Compliant - Islamic medical ethics</li>
               </ul>
               <button className="btn btn-primary">Learn More</button>
             </div>
@@ -154,7 +155,7 @@ function Home() {
       <section className="cta">
         <div className="cta-container">
           <h2>Ready to Submit Your Research?</h2>
-          <p>Join our community of researchers and contribute to advancing medical science.</p>
+          <p>Join our community of researchers and contribute to advancing Islamic medical science.</p>
           <button className="btn btn-primary btn-large">Submit Your Article</button>
         </div>
       </section>

@@ -111,12 +111,12 @@ function Login() {
         <div className="login-branding">
           <div className="branding-content">
             <Link to="/" className="branding-logo">
-              <span className="logo-icon">📚</span>
-              <span className="logo-text">AJIM</span>
+              <span className="logo-icon">🌙</span>
+              <span className="logo-text">VERITAS</span>
             </Link>
-            <h1>Asian Journal of Medicine and Health</h1>
+            <h1>Journal of Islamic Medicine and Science</h1>
             <p>
-              Join our community of researchers and contribute to advancing medical science
+              Join our community of researchers and contribute to advancing Islamic medical science
               through open access publishing.
             </p>
 
@@ -164,7 +164,7 @@ function Login() {
               <p>
                 {isRegister
                   ? 'Fill in your details to register as an author or reviewer'
-                  : 'Sign in to access your AJIM account'}
+                  : 'Sign in to access your VERITAS account'}
               </p>
             </div>
 

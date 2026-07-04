@@ -14,8 +14,8 @@ function App() {
         <header className="header">
           <div className="header-container">
             <div className="logo">
-              <span className="logo-icon">📚</span>
-              <span className="logo-text">AJIM</span>
+              <span className="logo-icon">🌙</span>
+              <span className="logo-text">VERITAS</span>
             </div>
             <nav className="nav">
               <Link to="/" className="nav-link">Home</Link>
@@ -39,8 +39,8 @@ function App() {
         <footer className="footer">
           <div className="footer-container">
             <div className="footer-section">
-              <h3>AJIM</h3>
-              <p>Asian Journal of Medicine and Health</p>
+              <h3>VERITAS</h3>
+              <p>Journal of Islamic Medicine and Science</p>
               <p>Open Access, Peer-Reviewed Journal</p>
             </div>
             <div className="footer-section">
@@ -52,13 +52,13 @@ function App() {
             </div>
             <div className="footer-section">
               <h4>Contact</h4>
-              <p>Email: editor@ajim-journal.com</p>
-              <p>Universitas Airlangga</p>
-              <p>Surabaya, Indonesia</p>
+              <p>Email: editor@veritas-journal.com</p>
+              <p>Islamic University</p>
+              <p>Indonesia</p>
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 AJIM - Asian Journal of Medicine and Health. All rights reserved.</p>
+            <p>&copy; 2024 VERITAS - Journal of Islamic Medicine and Science. All rights reserved.</p>
           </div>
         </footer>
       </div>
