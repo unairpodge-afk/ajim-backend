@@ -12,6 +12,7 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -20,6 +21,11 @@ function App() {
     });
 
     return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    // Close mobile menu on route change
+    setMobileMenuOpen(false);
   }, []);
 
   const checkUser = async () => {
@@ -31,6 +37,11 @@ function App() {
   const handleLogout = async () => {
     await auth.logout();
     setUser(null);
+    setMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   if (loading) {
@@ -47,6 +58,8 @@ function App() {
               <span className="logo-icon">🌙</span>
               <span className="logo-text">VERITAS</span>
             </Link>
+
+            {/* Desktop Nav */}
             <nav className="nav">
               <Link to="/" className="nav-link">Home</Link>
               <Link to="/articles" className="nav-link">Articles</Link>
@@ -61,7 +74,28 @@ function App() {
                 <Link to="/login" className="nav-link btn-login">Login</Link>
               )}
             </nav>
+
+            {/* Mobile Menu Button */}
+            <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
+              {mobileMenuOpen ? '✕' : '☰'}
+            </button>
           </div>
+
+          {/* Mobile Navigation */}
+          <nav className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
+            <Link to="/" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <Link to="/articles" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Articles</Link>
+            <Link to="/submit" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Submit</Link>
+            <Link to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>About</Link>
+            {user ? (
+              <>
+                <Link to="/dashboard" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
+                <button className="nav-link" onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <Link to="/login" className="nav-link btn-login" onClick={() => setMobileMenuOpen(false)}>Login</Link>
+            )}
+          </nav>
         </header>
 
         <Routes>
