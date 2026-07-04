@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../supabase';
 
 function Login() {
+  const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -15,6 +17,19 @@ function Login() {
   });
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Check if user is already logged in
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const checkUser = async () => {
+    const { data } = await auth.getSession();
+    if (data?.session) {
+      navigate('/dashboard');
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,8 +68,8 @@ function Login() {
     }
     if (!formData.password) {
       newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
     }
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
@@ -66,6 +81,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccessMessage('');
+    setErrorMessage('');
 
     if (isRegister) {
       if (!validateRegister()) return;
@@ -74,33 +90,58 @@ function Login() {
     }
 
     setLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    if (isRegister) {
-      setSuccessMessage('Registration successful! Please check your email to verify your account.');
-      setIsRegister(false);
-      setFormData({
-        email: '',
-        password: '',
-        confirmPassword: '',
-        fullName: '',
-        university: '',
-        role: 'author',
-      });
-    } else {
-      // For demo, show success
-      setSuccessMessage('Login successful! Redirecting to dashboard...');
-      // In real app: redirect to dashboard
+    try {
+      if (isRegister) {
+        // Register new user
+        const { data, error } = await auth.register(formData.email, formData.password, formData.fullName);
+
+        if (error) throw error;
+
+        setSuccessMessage('Registration successful! Please check your email to verify your account.');
+        setIsRegister(false);
+        setFormData({
+          email: '',
+          password: '',
+          confirmPassword: '',
+          fullName: '',
+          university: '',
+          role: 'author',
+        });
+      } else {
+        // Login user
+        const { data, error } = await auth.login(formData.email, formData.password);
+
+        if (error) throw error;
+
+        setSuccessMessage('Login successful! Redirecting to dashboard...');
+
+        // Redirect after short delay
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1000);
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      setErrorMessage(error.message || 'An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
-  const handleForgotPassword = () => {
+  const handleForgotPassword = async () => {
     const email = prompt('Please enter your email address:');
     if (email) {
-      alert(`Password reset link sent to ${email}`);
+      setLoading(true);
+      try {
+        const { error } = await auth.resetPassword(email);
+        if (error) throw error;
+        alert('Password reset link sent! Check your email.');
+      } catch (error) {
+        alert('Error: ' + error.message);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -175,6 +216,13 @@ function Login() {
               </div>
             )}
 
+            {errorMessage && (
+              <div className="alert alert-error">
+                <span className="alert-icon">❌</span>
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="login-form">
               {isRegister && (
                 <>
@@ -200,7 +248,7 @@ function Login() {
                       name="university"
                       value={formData.university}
                       onChange={handleChange}
-                      placeholder="e.g., Universitas Airlangga"
+                      placeholder="e.g., Universitas Islam Negeri"
                       className={errors.university ? 'error' : ''}
                     />
                     {errors.university && <span className="error-text">{errors.university}</span>}
@@ -258,7 +306,7 @@ function Login() {
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    placeholder={isRegister ? 'Min. 8 characters' : 'Enter your password'}
+                    placeholder={isRegister ? 'Min. 6 characters' : 'Enter your password'}
                     className={errors.password ? 'error' : ''}
                   />
                   <button
@@ -302,22 +350,7 @@ function Login() {
             </form>
 
             <div className="form-divider">
-              <span>or continue with</span>
-            </div>
-
-            <div className="social-login">
-              <button type="button" className="btn-social">
-                <span className="social-icon">🔵</span>
-                Google
-              </button>
-              <button type="button" className="btn-social">
-                <span className="social-icon">🔷</span>
-                Microsoft
-              </button>
-              <button type="button" className="btn-social">
-                <span className="social-icon">🔗</span>
-                ORCID
-              </button>
+              <span>or</span>
             </div>
 
             <div className="form-footer">
@@ -338,12 +371,12 @@ function Login() {
               )}
             </div>
 
-            {!isRegister && (
-              <div className="demo-notice">
-                <span className="demo-icon">💡</span>
+            {isRegister && (
+              <div className="info-notice">
+                <span className="info-icon">📧</span>
                 <div>
-                  <strong>Demo Mode</strong>
-                  <p>Enter any email and password to test the login (8+ chars for password).</p>
+                  <strong>Email Verification</strong>
+                  <p>After registration, you'll receive a verification email. Click the link to activate your account.</p>
                 </div>
               </div>
             )}

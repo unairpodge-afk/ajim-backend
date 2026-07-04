@@ -1,28 +1,65 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import Articles from './pages/Articles';
 import Submit from './pages/Submit';
 import About from './pages/About';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import { auth } from './supabase';
 import './App.css';
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    checkUser();
+    const { data: { subscription } } = auth.onAuthStateChange((event, session) => {
+      setUser(session?.user || null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const checkUser = async () => {
+    const { data } = await auth.getSession();
+    setUser(data?.session?.user || null);
+    setLoading(false);
+  };
+
+  const handleLogout = async () => {
+    await auth.logout();
+    setUser(null);
+  };
+
+  if (loading) {
+    return <div className="loading-screen">Loading...</div>;
+  }
+
   return (
     <Router>
       <div className="app">
         {/* Header */}
         <header className="header">
           <div className="header-container">
-            <div className="logo">
+            <Link to="/" className="logo">
               <span className="logo-icon">🌙</span>
               <span className="logo-text">VERITAS</span>
-            </div>
+            </Link>
             <nav className="nav">
               <Link to="/" className="nav-link">Home</Link>
               <Link to="/articles" className="nav-link">Articles</Link>
               <Link to="/submit" className="nav-link">Submit</Link>
               <Link to="/about" className="nav-link">About</Link>
-              <Link to="/login" className="nav-link btn-login">Login</Link>
+              {user ? (
+                <>
+                  <Link to="/dashboard" className="nav-link">Dashboard</Link>
+                  <button className="nav-link btn-logout" onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <Link to="/login" className="nav-link btn-login">Login</Link>
+              )}
             </nav>
           </div>
         </header>
@@ -33,6 +70,7 @@ function App() {
           <Route path="/submit" element={<Submit />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
 
         {/* Footer */}

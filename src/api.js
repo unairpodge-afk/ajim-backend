@@ -1,37 +1,71 @@
-const API_BASE = 'http://localhost:5000/api';
+import { supabase } from './supabase';
 
 export const api = {
   // Profiles
   getProfiles: async () => {
-    const res = await fetch(`${API_BASE}/profiles`);
-    if (!res.ok) throw new Error('Failed to fetch profiles');
-    return res.json();
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    return data;
   },
 
   createProfile: async (data) => {
-    const res = await fetch(`${API_BASE}/profiles`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error('Failed to create profile');
-    return res.json();
+    const { data: result, error } = await supabase
+      .from('profiles')
+      .insert([data])
+      .select()
+      .single();
+    if (error) throw error;
+    return result;
   },
 
   // Articles/Submissions
   getArticles: async () => {
-    const res = await fetch(`${API_BASE}/submissions`);
-    if (!res.ok) throw new Error('Failed to fetch articles');
-    return res.json();
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        *,
+        profiles (
+          full_name,
+          university_affiliation,
+          role
+        )
+      `)
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    return data;
   },
 
   createArticle: async (data) => {
-    const res = await fetch(`${API_BASE}/submissions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error('Failed to create article');
-    return res.json();
+    const { data: result, error } = await supabase
+      .from('articles')
+      .insert([data])
+      .select()
+      .single();
+    if (error) throw error;
+    return result;
+  },
+
+  // Update article
+  updateArticle: async (id, data) => {
+    const { data: result, error } = await supabase
+      .from('articles')
+      .update(data)
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) throw error;
+    return result;
+  },
+
+  // Delete article
+  deleteArticle: async (id) => {
+    const { error } = await supabase
+      .from('articles')
+      .delete()
+      .eq('id', id);
+    if (error) throw error;
   },
 };
