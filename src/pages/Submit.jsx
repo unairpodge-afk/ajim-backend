@@ -115,7 +115,7 @@ function Submit() {
           <div className="success-icon">✅</div>
           <h1>Submission Complete!</h1>
           <p>
-            Thank you for submitting your manuscript to <strong>VERITAS - Journal of Islamic Medicine and Science</strong>.
+            Thank you for submitting your manuscript to <strong>VERITAS - Veritas Islamic Journal</strong>.
           </p>
           <div className="success-details">
             <h3>What happens next?</h3>
@@ -145,7 +145,7 @@ function Submit() {
       <section className="page-header">
         <div className="page-header-content">
           <h1>Submit Article</h1>
-          <p>Submit your manuscript to VERITAS - Journal of Islamic Medicine and Science</p>
+          <p>Submit your manuscript to VERITAS - Veritas Islamic Journal</p>
         </div>
       </section>
 

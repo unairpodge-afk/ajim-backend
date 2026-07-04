@@ -114,7 +114,7 @@ function Login() {
               <span className="logo-icon">🌙</span>
               <span className="logo-text">VERITAS</span>
             </Link>
-            <h1>Journal of Islamic Medicine and Science</h1>
+            <h1>Veritas Islamic Journal</h1>
             <p>
               Join our community of researchers and contribute to advancing Islamic medical science
               through open access publishing.

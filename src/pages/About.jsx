@@ -53,7 +53,7 @@ function About() {
       <section className="about-hero">
         <div className="about-hero-content">
           <span className="journal-badge">Est. 2024</span>
-          <h1>Journal of Islamic Medicine and Science</h1>
+          <h1>Veritas Islamic Journal</h1>
           <p className="about-subtitle">
             A peer-reviewed, open-access journal dedicated to advancing medical research
             and healthcare practices based on Islamic principles and modern medical science.

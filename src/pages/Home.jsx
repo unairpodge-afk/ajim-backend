@@ -25,7 +25,7 @@ function Home() {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <h1>Journal of Islamic Medicine and Science</h1>
+          <h1>Veritas Islamic Journal</h1>
           <p className="hero-subtitle">
             Open Access, Peer-Reviewed Journal for Islamic Medical and Health Research
           </p>
@@ -120,7 +120,7 @@ function Home() {
             <div className="about-text">
               <h2>About VERITAS</h2>
               <p>
-                VERITAS - Journal of Islamic Medicine and Science is an open-access, peer-reviewed
+                VERITAS - Veritas Islamic Journal is an open-access, peer-reviewed
                 journal that publishes original research articles, reviews, and case reports
                 in the field of Islamic medicine and health sciences.
               </p>

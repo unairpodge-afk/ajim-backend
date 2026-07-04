@@ -40,7 +40,7 @@ function App() {
           <div className="footer-container">
             <div className="footer-section">
               <h3>VERITAS</h3>
-              <p>Journal of Islamic Medicine and Science</p>
+              <p>Veritas Islamic Journal</p>
               <p>Open Access, Peer-Reviewed Journal</p>
             </div>
             <div className="footer-section">
@@ -58,7 +58,7 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 VERITAS - Journal of Islamic Medicine and Science. All rights reserved.</p>
+            <p>&copy; 2024 VERITAS - Veritas Islamic Journal. All rights reserved.</p>
           </div>
         </footer>
       </div>
